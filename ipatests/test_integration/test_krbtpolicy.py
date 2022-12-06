@@ -23,7 +23,7 @@ PASSWORD = "Secret123"
 USER1 = "testuser1"
 USER2 = "testuser2"
 MAXLIFE = 86400
-
+LANG_PKG = ["langpacks-en"]
 
 def maxlife_within_policy(input, maxlife, slush=3600):
     """Given klist output of the TGT verify that it is within policy
@@ -81,6 +81,7 @@ class TestPWPolicy(IntegrationTest):
 
     @classmethod
     def install(cls, mh):
+        tasks.install_packages(cls.master, LANG_PKG)
         tasks.install_master(cls.master)
         tasks.create_active_user(cls.master, USER1, PASSWORD)
         tasks.create_active_user(cls.master, USER2, PASSWORD)
